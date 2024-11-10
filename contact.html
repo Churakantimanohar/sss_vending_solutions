@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Vending Solutions</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img src="images/logo.jpeg" alt="Vending Solutions Logo" class="logo"
+      /></a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="vending-machines.html">Vending Machines</a>
+        <a href="snacks.html">Snacks & Beverages</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="places.html">Nearby Snacks</a>
+      </nav>
+      <div class="cart">
+        <a href="cart.html">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png"
+            alt="Cart"
+            class="cart-icon"
+          />
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact-info">
+        <h2>Get in Touch with Us</h2>
+        <p>
+          <strong>Address:</strong> 123 Vending Street, Hyderabad, Telangana,
+          India
+        </p>
+        <p><strong>Phone:</strong> +91 12345 67890</p>
+        <p><strong>Email:</strong> support@vendingsolutions.com</p>
+      </section>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions or would like to learn more, please reach out
+        to us!
+      </p>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <p id="form-status"></p>
+      <!-- Status message area -->
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Vending Solutions. All rights reserved.</p>
+    </footer>
+
+    <!-- Include the EmailJS library -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script>
+      // Initialize EmailJS
+      (function () {
+        emailjs.init("YOUR_USER_ID"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+      })();
+
+      // Form submission function
+      function submitForm(event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        // Prepare email data for EmailJS
+        const templateParams = {
+          name: name,
+          email: email,
+          message: message,
+        };
+
+        // Send the email with EmailJS
+        emailjs
+          .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+          .then(
+            function (response) {
+              document.getElementById("form-status").textContent =
+                "Thank you for contacting us! We will respond soon.";
+              document.getElementById("contactForm").reset(); // Clear the form
+            },
+            function (error) {
+              document.getElementById("form-status").textContent =
+                "Failed to send message. Please try again later.";
+              console.error("EmailJS error:", error);
+            }
+          );
+      }
+    </script>
+  </body>
+</html>

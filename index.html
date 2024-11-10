@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSS-Vending & Snacks</title>
+
+    <!-- Link to Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+        <a> <img src="images/logo.jpeg" alt="Vending Solutions Logo" class="logo" /></a>
+      <h1>Vending Solutions</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="vending-machines.html">Vendings</a>
+        <a href="snacks.html">Snacks & Beverages</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="places.html">Nearby Snacks</a>
+      </nav>
+      <div class="cart">
+        <a href="cart.html">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png"
+            alt="Cart"
+            class="cart-icon"
+          />
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="intro">
+        <h2>Welcome to Vending Solutions!</h2>
+        <p>Your one-stop shop for vending machines and products.</p>
+        <a href="#products" class="cta-button">Shop Now</a>
+      </section>
+
+      <section id="products" class="product-categories">
+        <h3>Our Categories</h3>
+        <div class="category">
+          <a href="vending-machines.html">
+            <img src="images/mainvending.jpg" alt="Vending Machines" />
+            <h4>Vending Machines</h4>
+          </a>
+        </div>
+        <div class="category">
+          <a href="snacks.html">
+            <img src="images/mainsnacks.jpg" alt="Snacks & Beverages" />
+            <h4>Snacks & Beverages</h4>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      let cart = [];
+
+      document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", () => {
+          const productName = button.previousElementSibling.innerText;
+          cart.push(productName);
+          alert(`${productName} has been added to your cart!`);
+        });
+      });
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2024 Vending Solutions. All rights reserved.</p>
+    </footer>
+  </body>
+  <script src="script.js"></script>
+  <!-- Or use the correct file path if different -->
+</html>

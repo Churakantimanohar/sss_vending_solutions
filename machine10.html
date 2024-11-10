@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Model 1 - Vending Solutions</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img src="images/logo.jpeg" alt="Vending Solutions Logo" class="logo"
+      /></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="vending-machines.html">Vending Machines</a>
+        <a href="snacks.html">Snacks & Beverages</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="places.html">near by snacks</a>
+      </nav>
+
+      <div class="cart">
+        <a href="cart.html">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png"
+            alt="Cart"
+            class="cart-icon"
+          />
+          <span id="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Machine Model 10</h2>
+      <section class="product-detail">
+        <div class="product-container">
+          <img
+            src="images/machine-10.jpeg"
+            alt="Machine Model 10"
+            class="product-image"
+          />
+          <div class="product-info">
+            <p><strong>Price:</strong> ₹100000</p>
+            <p>
+              <strong>Description:</strong> This high-capacity vending machine
+              offers advanced features, ideal for high-traffic locations.
+            </p>
+            <p><strong>Features:</strong></p>
+            <ul>
+              <li>Holds up to 500 items</li>
+              <li>Touchscreen display</li>
+              <li>Energy-efficient technology</li>
+            </ul>
+
+            <button
+              class="add-to-cart"
+              data-name="Machine Model 5"
+              data-price="₹100000"
+              data-image="machine-10.jpeg"
+            >
+              Add to Cart
+            </button>
+            <button
+              class="buy-now"
+              data-name="Machine Model 5"
+              data-price="₹100000"
+              data-image="machine-10.jpeg"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Vending Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", () => {
+          const product = {
+            name: button.getAttribute("data-name"),
+            price: parseFloat(button.getAttribute("data-price")),
+            image: button.getAttribute("data-image"),
+            quantity: 1,
+          };
+
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const existingItemIndex = cart.findIndex(
+            (item) => item.name === product.name
+          );
+          if (existingItemIndex !== -1) {
+            cart[existingItemIndex].quantity += 1;
+          } else {
+            cart.push(product);
+          }
+          localStorage.setItem("cart", JSON.stringify(cart));
+          alert(`${product.name} has been added to your cart!`);
+        });
+      });
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
